@@ -1,7 +1,9 @@
 
 import Banner from "./Banner";
 import Category from "./Category";
+import Feature from "./Feature";
 import PopularMenu from "./PopularMenu";
+import Testimonial from "./Testimonial";
 
 const Home = () => {
     return (
@@ -10,6 +12,8 @@ const Home = () => {
            
             <Category></Category>
             <PopularMenu></PopularMenu>
+            <Feature></Feature>
+            <Testimonial></Testimonial>
         </div>
     );
 };
