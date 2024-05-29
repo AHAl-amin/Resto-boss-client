@@ -11,6 +11,7 @@ const Navber = () => {
 
         <li className="text-white"><Link to="/order/salad">Order food</Link></li>
         <li className="text-white"><Link to="/login">Login</Link></li>
+        <li className="text-white"><Link to="/signup">Sign Up</Link></li>
 
       
 
