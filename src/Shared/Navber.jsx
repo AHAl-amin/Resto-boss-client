@@ -6,9 +6,13 @@ const Navber = () => {
     const navOptions = <>
 
         <li className="text-white"><Link to="/">Home</Link></li>
+
         <li className="text-white"><Link to="/menu">Our menu</Link></li>
-        
-        <li><a>Item 3</a></li>
+
+        <li className="text-white"><Link to="/order/salad">Order food</Link></li>
+        <li className="text-white"><Link to="/login">Login</Link></li>
+
+      
 
 
     </>
@@ -32,7 +36,7 @@ const Navber = () => {
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                    {navOptions}
+                        {navOptions}
                     </ul>
                 </div>
                 <div className="navbar-end">
