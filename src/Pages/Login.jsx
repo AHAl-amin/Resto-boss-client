@@ -1,38 +1,58 @@
 
-import { useContext, useEffect, useRef, useState } from 'react';
-import { loadCaptchaEnginge, LoadCanvasTemplate,  validateCaptcha } from 'react-simple-captcha';
+import { useContext, useEffect,  useState } from 'react';
+import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../providers/Authprovider';
 
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+import Swal from 'sweetalert2';
 const Login = () => {
-    const captChaRef = useRef(null)
-    const [disable ,setDisable]=useState(true)
+   
+    const [disable, setDisable] = useState(true)
 
-    const {signIn} =useContext(AuthContext);
+    const { signIn } = useContext(AuthContext);
 
 
-    useEffect(() =>{
-        loadCaptchaEnginge(6); 
-    },[])
+    useEffect(() => {
+        loadCaptchaEnginge(6);
+    }, [])
 
-    const handleLogin = event =>{
+    const handleLogin = event => {
         event.preventDefault();
         const from = event.target;
-        const email =from.email.value;
-        const password =from.password.value;
-        console.log(email,password)
-        signIn(email ,password)
-        .then(result =>{
-            const user = result.user;
-            console.log(user);
-        })
+        const email = from.email.value;
+        const password = from.password.value;
+        console.log(email, password)
+        signIn(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+
+                Swal.fire({
+                    title: "user login successfully",
+                    showClass: {
+                      popup: `
+                        animate__animated
+                        animate__fadeInUp
+                        animate__faster
+                      `
+                    },
+                    hideClass: {
+                      popup: `
+                        animate__animated
+                        animate__fadeOutDown
+                        animate__faster
+                      `
+                    }
+                  });
+            })
     }
-    const handleValidateCapcha = e =>{
-        const user_captcha_value = captChaRef.current.value;
-        if(validateCaptcha(user_captcha_value)){
+    const handleValidateCapcha = (e) => {
+        const user_captcha_value = e.target.value;
+        if (validateCaptcha(user_captcha_value)) {
             setDisable(false)
         }
-        else{
+        else {
             setDisable(true)
         }
 
@@ -41,6 +61,9 @@ const Login = () => {
 
     return (
         <div className="hero min-h-screen bg-base-200">
+            <Helmet>
+                <title>Restru Boss/login</title>
+            </Helmet>
             <div className="hero-content flex flex-col md:flex-row ">
                 <div className="text-center lg:text-left flex-1">
                     <h1 className="text-5xl font-bold">Login now!</h1>
@@ -65,15 +88,15 @@ const Login = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                            <LoadCanvasTemplate />
+                                <LoadCanvasTemplate />
                             </label>
 
-                            <input type="text" name="capcha" ref={captChaRef} placeholder="Type the text above" className="input input-bordered" required />
-                          
-                        <button onClick={handleValidateCapcha} className="btn btn-outline  btn-xs mt-4">Validate</button>
+                            <input onBlur={handleValidateCapcha} type="text" name="capcha" placeholder="Type the text above" className="input input-bordered" required />
+
+                         
                         </div>
                         <div className="form-control mt-6">
-                           
+
                             <input disabled={disable} className="btn btn-primary" type="submit" value='login' />
                         </div>
                         <p><span>New here? please </span> <Link to='/signup'><span className='text-blue-400'>Create an account</span></Link></p>
