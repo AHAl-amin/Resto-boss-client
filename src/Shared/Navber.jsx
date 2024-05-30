@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+
 import { AuthContext } from "../providers/Authprovider";
+import { NavLink } from "react-router-dom";
 
 
 const Navber = () => {
@@ -17,22 +18,26 @@ const Navber = () => {
     }
     const navOptions = <>
 
-        <li className="text-white"><Link to="/">Home</Link></li>
+        <li className="text-white"><NavLink to="/">Home</NavLink></li>
 
-        <li className="text-white"><Link to="/menu">Our menu</Link></li>
+        <li className="text-white"><NavLink to="/menu">Our menu</NavLink></li>
 
-        <li className="text-white"><Link to="/order/salad">Order food</Link></li>
+        <li className="text-white"><NavLink to="/order/salad">Order food</NavLink></li>
 
-        <li className="text-white"><Link to="/signup">Sign Up</Link></li>
+        <li className="text-white"><NavLink to="/secret">Secret</NavLink></li>
+
+        <li className="text-white"><NavLink to="/signup">Sign Up</NavLink></li>
+
         {
             user ?
                 <>
+                <span>{user?.displayName}</span>
             <li onClick={handleLogout} className="btn btn-ghost pb-3">LogOut</li>
 
                 </>
                 :
                 <>
-                    <li className="text-white"><Link to="/login">Login</Link></li>
+                    <li className="text-white"><NavLink to="/login">Login</NavLink></li>
                 </>
         }
 

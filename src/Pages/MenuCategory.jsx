@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Cover from "../Shared/Cover";
 import MenuItemCard from "../Shared/MenuItemCard";
 
@@ -11,9 +11,9 @@ const MenuCategory = ({ items, title, img }) => {
                     items.map(item => <MenuItemCard key={item._id} item={item} ></MenuItemCard>)
                 }
             </div>
-            <Link to={`/order/${title}`}>
+            <NavLink to={`/order/${title}`}>
                 <button className="btn btn-outline border-b-4 border-orange-300 border-0"> Order now</button>
-            </Link>
+            </NavLink>
         </div>
     );
 };

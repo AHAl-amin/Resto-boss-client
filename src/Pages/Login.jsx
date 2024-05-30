@@ -3,14 +3,19 @@ import { useContext, useEffect,  useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../providers/Authprovider';
 
-import { Link } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
+
 const Login = () => {
    
     const [disable, setDisable] = useState(true)
 
     const { signIn } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const toNavigate = location.state?.from?.pathname || "/";
 
 
     useEffect(() => {
@@ -45,6 +50,7 @@ const Login = () => {
                       `
                     }
                   });
+                  navigate(toNavigate ,{replace: true});
             })
     }
     const handleValidateCapcha = (e) => {
@@ -83,7 +89,7 @@ const Login = () => {
                             </label>
                             <input type="password" name="password" placeholder="password" className="input input-bordered" required />
                             <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                <a href="#" className="label-text-alt NavLink NavLink-hover">Forgot password?</a>
                             </label>
                         </div>
                         <div className="form-control">
@@ -99,7 +105,7 @@ const Login = () => {
 
                             <input disabled={disable} className="btn btn-primary" type="submit" value='login' />
                         </div>
-                        <p><span>New here? please </span> <Link to='/signup'><span className='text-blue-400'>Create an account</span></Link></p>
+                        <p><span>New here? please </span> <NavLink to='/signup'><span className='text-blue-400'>Create an account</span></NavLink></p>
                     </form>
                 </div>
             </div>
