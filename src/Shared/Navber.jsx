@@ -32,7 +32,7 @@ const Navber = () => {
 
         <li className="text-white"><NavLink to="/signup">Sign Up</NavLink></li>
 
-        <li className="text-white"><NavLink to="/signup">
+        <li className="text-white"><NavLink to="/dashboard/cart">
             <button className="">
                 <div className="flex">
                  
