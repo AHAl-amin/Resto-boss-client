@@ -16,6 +16,7 @@ const Login = () => {
     const location = useLocation();
 
     const toNavigate = location.state?.from?.pathname || "/";
+    console.log(location.state)
 
 
     useEffect(() => {
@@ -102,8 +103,9 @@ const Login = () => {
                          
                         </div>
                         <div className="form-control mt-6">
+                            {/* apply disable for re captcha */}
 
-                            <input disabled={disable} className="btn btn-primary" type="submit" value='login' />
+                            <input disabled={false} className="btn btn-primary" type="submit" value='login' />
                         </div>
                         <p><span>New here? please </span> <NavLink to='/signup'><span className='text-blue-400'>Create an account</span></NavLink></p>
                     </form>
